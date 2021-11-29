@@ -1,0 +1,13 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/ishii/catkin_ws/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages",
+        "/home/ishii/catkin_ws/src/dobot/src"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/ishii/catkin_ws/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages",
+        "/home/ishii/catkin_ws/src/dobot/src"
+    ],
+    "ros.distro": "noetic"
+}

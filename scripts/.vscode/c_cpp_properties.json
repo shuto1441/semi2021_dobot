@@ -1,0 +1,25 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/ishii/catkin_ws/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/ishii/catkin_ws/src/beginner_tutorial/include/**",
+        "/home/ishii/catkin_ws/src/ddynamic_reconfigure/include/**",
+        "/home/ishii/catkin_ws/src/dmk_high_speed_cam_ros/include/**",
+        "/home/ishii/catkin_ws/src/dobot/include/**",
+        "/home/ishii/catkin_ws/src/gscam/include/**",
+        "/home/ishii/catkin_ws/src/orientalmotor_ros/include/**",
+        "/home/ishii/catkin_ws/src/semi2021_dobot/include/**",
+        "/home/ishii/catkin_ws/src/sensor_tutorial/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ],
+  "version": 4
+}

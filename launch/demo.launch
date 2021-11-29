@@ -1,0 +1,24 @@
+<launch>
+    <!-- <arg name="portname1" default="/dev/ttyUSB0"/>
+    <group ns="dobot1">
+        <node pkg="dobot" name="dobot_server" type="DobotServer" args="$(arg portname1)" />
+        <node pkg="semi2021_dobot" name="dobot_client" type="DobotClient_JOG.py"/>
+    </group> -->
+    <node name="usb_cam1" pkg="usb_cam" type="usb_cam_node" output="screen">
+        <!-- カメラの指定　defaultは/dev/video0 -->
+        <param name="video_device" value="/dev/video0"/>
+        <!-- 画像の大きさ（横幅）の指定 -->
+        <param name="image_width" value="640"/>
+        <!-- 画像の大きさ（縦幅）の指定 -->
+        <param name="image_height" value="480"/>
+		<param name="pixel_format" value="yuyv" />
+		<param name="camera_frame_id" value="usb_cam" />
+		<param name="io_method" value="mmap" />
+	</node> 
+    <group ns="hand_sensing">
+        <arg name="max_num_hands" default="2" />
+        <arg name="min_detection_confidence" default="0.7" />
+        <arg name="min_tracking_confidence" default="0.5" />
+        <node pkg="semi2021_dobot" type="hand_gesture_ros.py" name="hand_gesture" output="screen" args="--max_num_hands $(arg max_num_hands) --min_detection_confidence $(arg min_detection_confidence) --min_tracking_confidence $(arg min_tracking_confidence)"/>
+    </group>
+</launch>
