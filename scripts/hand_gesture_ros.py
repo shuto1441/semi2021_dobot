@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import copy
 import argparse
@@ -33,11 +33,11 @@ def get_args():
 class Publishsers:
     def __init__(self):
         # Publisherを作成
-        self.publisher = rospy.Publisher('/hand_status', hand, queue_size=10)
+        self.publisher = rospy.Publisher('hand_status', hand, queue_size=10)
         # messageの型を作成
         self.message_hand = hand()
         # Publisherを作成
-        self.publisher_image = rospy.Publisher('/cv_hand_sense', Image, queue_size=10)
+        self.publisher_image = rospy.Publisher('cv_hand_sense', Image, queue_size=10)
         # messageの型を作成
         self.message_image = Image()
         # 引数解析 #################################################################
@@ -79,7 +79,7 @@ class Publishsers:
             for hand_landmarks, handedness in zip(results.multi_hand_landmarks,
                                                 results.multi_handedness):
                 # 手の平重心計算
-                cx, cy = self.calc_palm_moment(debug_image, hand_landmarks)
+                cx, cy, landmark_z = self.calc_palm_moment(debug_image, hand_landmarks)
                 # 外接矩形の計算
                 brect = self.calc_bounding_rect(debug_image, hand_landmarks)
                 # 描画
@@ -125,6 +125,7 @@ class Publishsers:
         for index, landmark in enumerate(landmarks.landmark):
             landmark_x = min(int(landmark.x * image_width), image_width - 1)
             landmark_y = min(int(landmark.y * image_height), image_height - 1)
+            landmark_z = landmark.z
 
             landmark_point = [np.array((landmark_x, landmark_y))]
 
@@ -146,7 +147,7 @@ class Publishsers:
             cx = int(M['m10'] / M['m00'])
             cy = int(M['m01'] / M['m00'])
 
-        return cx, cy
+        return cx, cy, landmark_z
 
 
     def calc_bounding_rect(self, image, landmarks):
@@ -362,7 +363,7 @@ class Subscribe_publishers:
     def __init__(self, pub):
         self.pub = pub
         # Subscriberを作成
-        rospy.Subscriber("/usb_cam1/image_raw", Image, self.callback)
+        rospy.Subscriber("usb_cam/image_raw", Image, self.callback)
         self.message = hand()
 
     def callback(self, message):
