@@ -51,8 +51,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
     FILES
     hand.msg
-#   Message1.msg
-#   Message2.msg
+    dobot.msg
  )
 
 
